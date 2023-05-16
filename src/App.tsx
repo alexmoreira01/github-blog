@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
+import { defaultTheme } from "./styles/theme/default";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./styles/global";
 
-function App() {
+
+export function App() {
 
   return (
-    <>
-      
-    </>
-  )
-}
+    <BrowserRouter>
+      <ThemeProvider theme={defaultTheme}>
+        <Router />
 
-export default App
+        <GlobalStyles />
+      </ThemeProvider>
+    </BrowserRouter>
+  );
+}

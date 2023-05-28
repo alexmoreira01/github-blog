@@ -1,6 +1,10 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
-export const ExternalLinkContainer = styled.a`
+interface ExternalLinkProps {
+  variant?: "iconLeft";
+} 
+
+export const ExternalLinkContainer = styled.a<ExternalLinkProps>`
   height: 1.1875rem;
 
   display: flex;
@@ -11,6 +15,7 @@ export const ExternalLinkContainer = styled.a`
   font-size: ${(props) => props.theme.textSizes["components-link"]};
   text-transform: uppercase;
 
+  border: none;
   border-bottom: 1px solid transparent;
   gap: 0.5rem;
 
@@ -27,4 +32,8 @@ export const ExternalLinkContainer = styled.a`
   &:hover {
     border-color: ${(props) => props.theme.colors["brand-blue"]};
   }
+
+  ${({variant}) => variant === 'iconLeft' && css`
+    flex-direction: row-reverse;
+  `}
 `;

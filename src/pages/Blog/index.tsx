@@ -4,6 +4,7 @@ import { Profile } from "./components/Profile";
 import { SearchInput } from "./components/SearchInput";
 import { PostsListContainer } from "./styles";
 import { api } from "../../lib/axios";
+import { Spinner } from "../../components/Spinner";
 
 const username = import.meta.env.VITE_GITHUB_USERNAME;
 const repoName = import.meta.env.VITE_GITHUB_REPONAME;
@@ -22,8 +23,8 @@ export interface IPost {
 }
 
 export function Blog() {
-  const [ posts, setPosts ] = useState<IPost[]>([]);
-  const [ isLoading, setIsLoading ] = useState(true);
+  const [posts, setPosts] = useState<IPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   const getPosts = useCallback(async (query: string = "") => {
@@ -45,22 +46,26 @@ export function Blog() {
     <div>
       <Profile />
 
-      <SearchInput 
-        postsLength={posts.length}  
-        getPosts={getPosts} 
+      <SearchInput
+        postsLength={posts.length}
+        getPosts={getPosts}
       />
 
-      <PostsListContainer>
-        {posts.map((post) => {
-          return(
-            <Post
-              key={post.number}
-              post={post}
-            />
-          )
-        })}
-        
-      </PostsListContainer>
+      {isLoading ?
+        <Spinner />
+        :
+        <PostsListContainer>
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.number}
+                post={post}
+              />
+            )
+          })}
+
+        </PostsListContainer>
+      }
     </div>
   )
 }

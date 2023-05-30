@@ -12,5 +12,4 @@ export function Router() {
       </Route>
     </Routes>
   )
-
 }

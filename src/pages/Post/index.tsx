@@ -11,8 +11,6 @@ export function Post() {
   const [postData, setPostData] = useState<IPost>({} as IPost)
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("LOADING ___________________________ =>", isLoading)
-
   const { id } = useParams();
 
   const getPostDetails = useCallback(async () => {
@@ -26,11 +24,11 @@ export function Post() {
 
       setIsLoading(false);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     getPostDetails();
-  })
+  }, [])
 
   return (
     <>

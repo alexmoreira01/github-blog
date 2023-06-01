@@ -22,8 +22,6 @@ export function PostHeader({ postData, isLoading }: PostHeaderProps) {
 
   const formattedData = relativeDateFormatter(postData?.created_at);
 
-  console.log("LOADING ___________________________2 =>", isLoading)
-
   return (
     <PostHeaderContainer>
       {isLoading ? (
